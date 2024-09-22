@@ -5,7 +5,7 @@ const getAllNotes = async (req, res) => {
 
   try {
     page = parseInt(page, 10) || 1;
-    perPage = parseInt(per_page, 10) || 2;
+    perPage = parseInt(per_page, 10) || 20;
 
     const matchStage = {};
     const excludedFields = ['page', 'per_page', 'search'];
