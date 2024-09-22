@@ -1,0 +1,56 @@
+[
+    {
+        "id": 0,
+        "title": "Meeting Notes",
+        "content": "Discussed project milestones, deadlines, and task assignments. Next meeting scheduled for next Monday.",
+        "createdAt": "2024-09-21T10:30:00Z"
+    },
+    {
+        "id": 1,
+        "title": "Shopping List",
+        "content": "Buy milk, eggs, bread, and coffee. Check for discounts on household items.",
+        "createdAt": "2024-09-20T15:20:00Z"
+    },
+    {
+        "id": 2,
+        "title": "Workout Routine",
+        "content": "Monday: Cardio and abs. Tuesday: Chest and triceps. Wednesday: Back and biceps. Thursday: Legs. Friday: Full-body stretch.",
+        "createdAt": "2024-09-19T07:45:00Z"
+    },
+    {
+        "id": 3,
+        "title": "Vacation Plan",
+        "content": "Book flights and hotel for Paris trip. Create itinerary for sightseeing: Eiffel Tower, Louvre, Notre Dame. Reserve restaurant for dinner.",
+        "createdAt": "2024-09-18T11:00:00Z"
+    },
+    {
+        "id": 4,
+        "title": "Project Ideas",
+        "content": "1. AI-based personal assistant app.\n2. E-commerce platform with blockchain integration.\n3. Virtual reality fitness experience.",
+        "createdAt": "2024-09-17T08:30:00Z"
+    },
+    {
+        "id": 5,
+        "title": "Books to Read",
+        "content": "1. 'Atomic Habits' by James Clear\n2. 'The Pragmatic Programmer' by Andy Hunt and Dave Thomas\n3. 'Clean Code' by Robert C. Martin",
+        "createdAt": "2024-09-16T16:50:00Z"
+    },
+    {
+        "id": 6,
+        "title": "Recipe - Spaghetti Bolognese",
+        "content": "Ingredients: Spaghetti, ground beef, tomatoes, onions, garlic, olive oil, salt, pepper.\nInstructions: Cook spaghetti. Sauté onions and garlic, add beef, then tomatoes. Simmer for 20 minutes.",
+        "createdAt": "2024-09-15T12:15:00Z"
+    },
+    {
+        "id": 7,
+        "title": "Weekly Goals",
+        "content": "1. Finish client project report.\n2. Start working on new app feature.\n3. Read chapters 4 and 5 of the design patterns book.",
+        "createdAt": "2024-09-14T09:00:00Z"
+    },
+    {
+        "id": 8,
+        "title": "Conference Summary",
+        "content": "Key takeaways from the tech conference:\n- AI in healthcare\n- Future of blockchain\n- Importance of data security and privacy",
+        "createdAt": "2024-09-13T18:45:00Z"
+    }
+]
