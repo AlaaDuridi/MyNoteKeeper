@@ -42,7 +42,7 @@ node dev-data/data/import-dev-data.js delete
 - **`title`**: The title of the note (string, required).
 - **`content`**: The content of the note (string, required).
 
-<img src="./test-images/search.jpg> alt="search-a-note"/>
+<img src="./test-images/search.jpg" alt="search-a-note"/>
 <img src="./test-images/pagination.jpg" alt="paginated notes"/>
 <img src="./test-images/getById.jpg" alt="get a note by id"/>
 <img src="./test-images/success-post.jpg" alt="succeeded tp create a note"/>
