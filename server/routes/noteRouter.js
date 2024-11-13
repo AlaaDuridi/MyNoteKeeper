@@ -5,7 +5,7 @@ const {
   getNote,
   updateNote,
   deleteNote,
-} = require('./../controllers/noteController');
+} = require('../controllers/noteController');
 const router = express.Router();
 
 // router.param('id', checkId);

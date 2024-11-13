@@ -26,6 +26,14 @@ If you want to clear all data from the database, use this command:
 ```
 node dev-data/data/import-dev-data.js delete
 ```
+
+### 5. Start the Server
+To start the project , run the following command:
+```
+locally: 
+npm run dev OR yarn dev
+```
+
 ## API Endpoints
 | Method | Endpoint       | Description                           | Query Params      | Body Params                   |
 |--------|----------------|---------------------------------------|------------------|-------------------------------|
@@ -49,3 +57,13 @@ node dev-data/data/import-dev-data.js delete
 <img src="./test-images/fail-post.jpg" alt="failed to create a note"/>
 <img src="./test-images/patch.jpg" alt="update a note"/>
 <img src="./test-images/delete.jpg" alt="delete a note"/>
+
+
+## project tree
+my-note-keeper/
+├── client/              # React frontend
+├── server/              # Node backend
+│   ├── config.env       # Environment variables file
+│   ├── server.js        # Main server file
+│   └── other files...
+├── package.json  

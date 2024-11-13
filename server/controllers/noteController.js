@@ -1,4 +1,4 @@
-const Note = require('./../models/noteModel');
+const Note = require('../models/noteModel');
 
 const getAllNotes = async (req, res) => {
   let { page, per_page, search } = req.query;
@@ -7,15 +7,16 @@ const getAllNotes = async (req, res) => {
     page = parseInt(page, 10) || 1;
     perPage = parseInt(per_page, 10) || 20;
 
-    const matchStage = {};
     const excludedFields = ['page', 'per_page', 'search'];
 
-    // Exclude pagination and search fields from filtering
-    Object.keys(req.query).forEach(field => {
-      if (!excludedFields.includes(field)) {
-        matchStage[field] = req.query[field];
-      }
-    });
+    // Filter out excluded fields and assign the rest to matchStage
+    const matchStage = Object.keys(req.query).filter(field=>
+    !excludedFields.includes(field))
+        .reduce((acc, field) => {
+            acc[field] = req.query[field];
+            return acc;
+        },{});
+
 
     // Search logic
     if (search) {
