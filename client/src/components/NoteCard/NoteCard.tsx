@@ -1,10 +1,9 @@
-// NoteCard.tsx
-import { FC, useState } from 'react';
-import { INoteCardProps } from "./NoteCard.types";
-import { Card, CardContent, CardActions, Typography, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import {FC, useState} from 'react';
+import {INoteCardProps} from "./NoteCard.types";
+import {Card, CardContent, CardActions, Typography, IconButton} from '@mui/material';
+import {Delete} from '@mui/icons-material';
 
-const NoteCard: FC<INoteCardProps> = ({ note, onClick, onDelete }) => {
+const NoteCard: FC<INoteCardProps> = ({note, onClick, onDelete}) => {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -12,7 +11,7 @@ const NoteCard: FC<INoteCardProps> = ({ note, onClick, onDelete }) => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => onClick(note)}
-            style={{ cursor: 'pointer' }}
+            style={{cursor: 'pointer'}}
         >
             <CardContent>
                 <Typography variant="h6" component="div">
@@ -23,16 +22,16 @@ const NoteCard: FC<INoteCardProps> = ({ note, onClick, onDelete }) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                    <IconButton
-                        aria-label="delete"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onDelete(note._id);
-                        }}
-                        sx={{ visibility: isHovered ? 'visible' : 'hidden' }}
-                    >
-                        <DeleteIcon color='error' />
-                    </IconButton>
+                <IconButton
+                    aria-label="delete"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onDelete(note._id);
+                    }}
+                    sx={{visibility: isHovered ? 'visible' : 'hidden'}}
+                >
+                    <Delete color='error'/>
+                </IconButton>
             </CardActions>
         </Card>
     );

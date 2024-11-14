@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
 import {TextField, Button, Paper, Box} from '@mui/material';
+import {IAddNoteProps} from "./AddNote.types.ts";
 
-interface AddNoteProps {
-    onAdd: (note: { title: string; content: string }) => void;
-}
-
-const AddNote: React.FC<AddNoteProps> = ({onAdd}) => {
+const AddNote: React.FC<IAddNoteProps> = ({onAdd}) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
