@@ -1,4 +1,4 @@
-import {INote, INoteBEResponse} from "../types/models/note.model";
+import {INewNote, INote, INoteBEResponse} from "../types/models/note.model";
 
 const INDEX = '/api/v1/notes';
 
@@ -45,7 +45,7 @@ class NoteService {
     }
 
     // Create a new note
-    static async create(noteData: INote): Promise<INoteBEResponse | null> {
+    static async create(noteData: INewNote): Promise<{ status:string, data:{note:INote} } | null> {
         try {
             const response = await fetch(INDEX, {
                 method: 'POST',

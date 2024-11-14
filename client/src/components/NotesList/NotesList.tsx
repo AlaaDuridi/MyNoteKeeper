@@ -1,12 +1,13 @@
 // NoteList.tsx
 import { useState, useEffect, FC } from 'react';
-import { INote } from "../../types/models/note.model";
+import {INewNote, INote} from "../../types/models/note.model";
 import NoteService from "../../services/notes.service";
 import SearchBar from "../SearchBar";
 import useDebounce from "../../hooks/useDebounce";
 import { DEBOUNCE_SEARCH_DELAY, INITIAL_PAGE_NUMBER, NOTES_PER_PAGE } from "../../constants/notes.constants";
 import NoteCard from "../NoteCard";
 import { Grid, Pagination, CircularProgress } from '@mui/material';
+import AddNote from "../AddNote";
 
 const NoteList: FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>();
@@ -16,23 +17,32 @@ const NoteList: FC = () => {
     const [totalPages, setTotalPages] = useState<number>(INITIAL_PAGE_NUMBER);
 
     const [loading, setLoading] = useState<boolean>(false);
-
+    const fetchNotes = async () => {
+        setLoading(true);
+        const response = await NoteService.list(page, NOTES_PER_PAGE, debouncedSearchTerm);
+        if (response) {
+            setNotes(response.notes.data);
+            setTotalPages(Math.ceil(response.notes.metadata.totalCount / NOTES_PER_PAGE));
+        }
+        setLoading(false);
+    };
+    const handleAddNote = async (newNote: INewNote) => {
+        const response = await NoteService.create(newNote);
+        if (response) {
+           alert('Note added successfully');
+            void fetchNotes();
+        }
+    };
     useEffect(() => {
-        const fetchNotes = async () => {
-            setLoading(true);
-            const response = await NoteService.list(page, NOTES_PER_PAGE, debouncedSearchTerm);
-            if (response) {
-                setNotes(response.notes.data);
-                setTotalPages(Math.ceil(response.notes.metadata.totalCount / NOTES_PER_PAGE)); // Calculate total pages
-            }
-            setLoading(false);
-        };
         void fetchNotes();
     }, [debouncedSearchTerm, page]);
 
     return (
         <div>
+
             <SearchBar value={searchTerm} onChange={setSearchTerm} />
+
+            <AddNote onAdd={handleAddNote} />
             {loading ? (
                 <CircularProgress />
             ) : (

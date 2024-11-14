@@ -15,3 +15,8 @@ export interface INoteBEResponse {
         data: INote[];
     };
 }
+
+export interface INewNote{
+    title: string;
+    content: string;
+}
