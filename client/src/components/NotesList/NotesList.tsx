@@ -8,6 +8,7 @@ import { DEBOUNCE_SEARCH_DELAY, INITIAL_PAGE_NUMBER, NOTES_PER_PAGE } from "../.
 import NoteCard from "../NoteCard";
 import { Grid, Pagination, CircularProgress } from '@mui/material';
 import AddNote from "../AddNote";
+import NoteDialog from "../NoteDialog";
 
 const NoteList: FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>();
@@ -15,8 +16,10 @@ const NoteList: FC = () => {
     const [notes, setNotes] = useState<INote[]>([]);
     const [page, setPage] = useState<number>(INITIAL_PAGE_NUMBER);
     const [totalPages, setTotalPages] = useState<number>(INITIAL_PAGE_NUMBER);
-
+    const [selectedNote, setSelectedNote] = useState<INote | undefined>();
+    const [openNoteDialog, setOpenNoteDialog] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
+
     const fetchNotes = async () => {
         setLoading(true);
         const response = await NoteService.list(page, NOTES_PER_PAGE, debouncedSearchTerm);
@@ -31,6 +34,19 @@ const NoteList: FC = () => {
         if (response) {
            alert('Note added successfully');
             void fetchNotes();
+        }
+    };
+    const handleEditNote = (note: INote) => {
+        setSelectedNote(note);
+        setOpenNoteDialog(true);
+    };
+
+    const handleSaveNote = async (updatedNote: INote) => {
+        const response = await NoteService.update(updatedNote._id, updatedNote);
+        if (response) {
+            setOpenNoteDialog(false);
+            setSelectedNote(undefined);
+            void fetchNotes(); // Refresh notes after saving
         }
     };
     useEffect(() => {
@@ -51,7 +67,7 @@ const NoteList: FC = () => {
                         <Grid item xs={12} sm={6} md={4} lg={3} key={note._id}>
                             <NoteCard
                                 note={note}
-                                onClick={(note) => console.log('will open dialog', note)}
+                                onClick={(note) => handleEditNote(note)}
                                 onDelete={(id) => console.log('will delete note with id', id)}
                             />
                         </Grid>
@@ -64,6 +80,14 @@ const NoteList: FC = () => {
                 onChange={(_event, value) => setPage(value)}
                 style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center' }}
             />
+            {selectedNote && (
+                <NoteDialog
+                    open={openNoteDialog}
+                    note={selectedNote}
+                    onClose={() => setOpenNoteDialog(false)}
+                    onSave={handleSaveNote}
+                />
+            )}
         </div>
     );
 };
