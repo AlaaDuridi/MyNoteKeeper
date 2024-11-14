@@ -59,6 +59,7 @@ npm run dev OR yarn dev
 <img src="./test-images/delete.jpg" alt="delete a note"/>
 
 ## project tree
+```
 my-note-keeper/
 ├── client/              # React frontend
 ├── server/              # Node backend
@@ -66,6 +67,7 @@ my-note-keeper/
 │   ├── server.js        # Main server file
 │   └── other files...
 ├── package.json  
+```
 
 ## client side
 <img src="./test-images/client1.png"/>
