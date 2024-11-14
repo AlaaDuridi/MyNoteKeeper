@@ -1,4 +1,3 @@
-// NoteList.tsx
 import {useState, useEffect, FC} from 'react';
 import {INewNote, INote} from "../../types/models/note.model";
 import NoteService from "../../services/notes.service";
@@ -6,7 +5,7 @@ import SearchBar from "../SearchBar";
 import useDebounce from "../../hooks/useDebounce";
 import {DEBOUNCE_SEARCH_DELAY, INITIAL_PAGE_NUMBER, NOTES_PER_PAGE} from "../../constants/notes.constants";
 import NoteCard from "../NoteCard";
-import {Grid, Pagination, CircularProgress} from '@mui/material';
+import {Grid, Box,Pagination, CircularProgress} from '@mui/material';
 import AddNote from "../AddNote";
 import NoteDialog from "../NoteDialog";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog.tsx";
@@ -74,11 +73,13 @@ const NoteList: FC = () => {
     return (
         <div>
             <SearchBar value={searchTerm} onChange={setSearchTerm}/>
+            <Box p={5}>
             <AddNote onAdd={handleAddNote}/>
+            </Box>
             {loading ? (
                 <CircularProgress/>
             ) : (
-                <Grid container spacing={2} style={{marginTop: '1rem'}}>
+                <Grid p={5} container spacing={2} style={{marginTop: '1rem'}}>
                     {notes.map((note) => (
                         <Grid item xs={12} sm={6} md={4} lg={3} key={note._id}>
                             <NoteCard
