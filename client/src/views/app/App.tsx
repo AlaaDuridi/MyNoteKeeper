@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
+import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import NoteService from "../../services/notes.service.ts";
 
 function App() {
   const [count, setCount] = useState(0)
-    const [data, setData] =useState(null);
     useEffect(() => {
-        fetch("/api/test")
-            .then((res) => res.json())
-            .then((data) => setData(data.message));
+        const listNotes = async ()=>{
+            const result = await NoteService.list();
+            console.log(result);
+        }
+        void listNotes();
     }, []);
   return (
     <>
@@ -27,7 +29,6 @@ function App() {
           count is {count}
         </button>
       </div>
-        <p>{!data ? "Loading..." : data}</p>
     </>
   )
 }
