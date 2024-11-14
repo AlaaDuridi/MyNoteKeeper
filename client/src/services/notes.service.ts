@@ -1,4 +1,4 @@
-import { INote, INoteBEResponse } from "../types/models/note.model";
+import {INote, INoteBEResponse} from "../types/models/note.model";
 
 const INDEX = '/api/v1/notes';
 
@@ -13,12 +13,14 @@ class NoteService {
     }
 
     // Fetch all notes with optional pagination and search
-   static async list(page: number = 1, perPage: number = 20, search: string = ''): Promise<INoteBEResponse | null> {
+    static async list(page?: number, perPage?: number, search?: string): Promise<INoteBEResponse | null> {
+        const params: { [key: string]: string } = {};
         try {
+            if (page) params['page'] = page.toString();
+            if (perPage) params['per_page'] = perPage.toString();
+            if (search) params['search'] = search;
             const query = new URLSearchParams({
-                page: page.toString(),
-                per_page: perPage.toString(),
-                search,
+                ...params,
             }).toString();
 
             const response = await fetch(`${INDEX}?${query}`);
@@ -31,7 +33,7 @@ class NoteService {
     }
 
     // Fetch a single note by ID
-   static async get(id: string): Promise<INoteBEResponse | null> {
+    static async get(id: string): Promise<INoteBEResponse | null> {
         try {
             const response = await fetch(`${INDEX}/${id}`);
             if (!response.ok) throw new Error('Failed to fetch note');
@@ -61,7 +63,7 @@ class NoteService {
     }
 
     // Update an existing note by ID
-   static async update(id: string, noteData: Partial<INote>): Promise<INoteBEResponse | null> {
+    static async update(id: string, noteData: Partial<INote>): Promise<INoteBEResponse | null> {
         try {
             const response = await fetch(`${INDEX}/${id}`, {
                 method: 'PATCH',
