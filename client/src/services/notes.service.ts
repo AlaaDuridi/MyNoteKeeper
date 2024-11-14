@@ -87,7 +87,7 @@ class NoteService {
                 method: 'DELETE',
             });
             if (!response.ok) throw new Error('Failed to delete note');
-            return await response.json();
+            return {success: true};
         } catch (error) {
             NoteService.handleError(error);
             return null;
